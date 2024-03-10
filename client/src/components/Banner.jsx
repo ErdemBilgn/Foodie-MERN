@@ -101,66 +101,6 @@ function Banner() {
           </button>
         </div>
       </div>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea laboriosam,
-        veritatis similique asperiores corporis mollitia repellendus fugiat
-        deleniti magni, sed porro error consectetur dolorum libero hic
-        voluptates deserunt atque velit. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Mollitia eligendi velit maxime sequi esse sunt ullam
-        nostrum cum qui, accusantium, modi totam sapiente maiores minima
-        adipisci iure voluptas obcaecati fugit? Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum, nemo. Porro vel dolor quia eum
-        laudantium voluptatibus eaque iusto earum velit dicta explicabo totam
-        quisquam dolorum veniam perferendis, vero aperiam.
-      </p>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea laboriosam,
-        veritatis similique asperiores corporis mollitia repellendus fugiat
-        deleniti magni, sed porro error consectetur dolorum libero hic
-        voluptates deserunt atque velit. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Mollitia eligendi velit maxime sequi esse sunt ullam
-        nostrum cum qui, accusantium, modi totam sapiente maiores minima
-        adipisci iure voluptas obcaecati fugit? Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum, nemo. Porro vel dolor quia eum
-        laudantium voluptatibus eaque iusto earum velit dicta explicabo totam
-        quisquam dolorum veniam perferendis, vero aperiam.
-      </p>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea laboriosam,
-        veritatis similique asperiores corporis mollitia repellendus fugiat
-        deleniti magni, sed porro error consectetur dolorum libero hic
-        voluptates deserunt atque velit. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Mollitia eligendi velit maxime sequi esse sunt ullam
-        nostrum cum qui, accusantium, modi totam sapiente maiores minima
-        adipisci iure voluptas obcaecati fugit? Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum, nemo. Porro vel dolor quia eum
-        laudantium voluptatibus eaque iusto earum velit dicta explicabo totam
-        quisquam dolorum veniam perferendis, vero aperiam.
-      </p>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea laboriosam,
-        veritatis similique asperiores corporis mollitia repellendus fugiat
-        deleniti magni, sed porro error consectetur dolorum libero hic
-        voluptates deserunt atque velit. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Mollitia eligendi velit maxime sequi esse sunt ullam
-        nostrum cum qui, accusantium, modi totam sapiente maiores minima
-        adipisci iure voluptas obcaecati fugit? Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum, nemo. Porro vel dolor quia eum
-        laudantium voluptatibus eaque iusto earum velit dicta explicabo totam
-        quisquam dolorum veniam perferendis, vero aperiam.
-      </p>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea laboriosam,
-        veritatis similique asperiores corporis mollitia repellendus fugiat
-        deleniti magni, sed porro error consectetur dolorum libero hic
-        voluptates deserunt atque velit. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Mollitia eligendi velit maxime sequi esse sunt ullam
-        nostrum cum qui, accusantium, modi totam sapiente maiores minima
-        adipisci iure voluptas obcaecati fugit? Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum, nemo. Porro vel dolor quia eum
-        laudantium voluptatibus eaque iusto earum velit dicta explicabo totam
-        quisquam dolorum veniam perferendis, vero aperiam.
-      </p>
     </div>
   );
 }
