@@ -20,26 +20,32 @@ function Banner() {
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    readOnly
                   />
                   <input
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    readOnly
                   />
                   <input
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    checked
+                    readOnly
                   />
                   <input
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    readOnly
                   />
                   <input
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    readOnly
                   />
                 </div>
                 <p className="text-red">$18.00</p>
@@ -58,26 +64,32 @@ function Banner() {
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    readOnly
                   />
                   <input
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    readOnly
                   />
                   <input
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    readOnly
                   />
                   <input
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    readOnly
                   />
                   <input
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-yellow-500"
+                    checked
+                    readOnly
                   />
                 </div>
                 <p className="text-red">$18.00</p>
