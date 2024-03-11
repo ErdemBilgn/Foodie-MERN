@@ -51,7 +51,7 @@ function OurServices() {
             {serviceList.map((service, i) => (
               <div
                 key={service.id}
-                className="shadow-md rounded-md py-5 px-5 text-center space-y-2 text-green cursor-pointer hover:border-indigo-600 transition-all duration-200 hover:border"
+                className="shadow-md rounded-md py-5 px-5 text-center space-y-2 text-green cursor-pointer hover:shadow-xl transition-all duration-200 hover:shadow"
               >
                 <img src={service.image} className="mx-auto " />
                 <h5 className="pt-3 font-semibold ">{service.title}</h5>
