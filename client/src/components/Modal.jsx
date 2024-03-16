@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthProvider";
 function Modal() {
   const {
     register,
@@ -9,7 +11,43 @@ function Modal() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const { signupWithGoogle, login } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // redirecting to home page or specific page
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+
+  const onSubmit = (data) => {
+    const email = data.email;
+    const password = data.password;
+
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        alert("login successfull!");
+        document.getElementById("my_modal_5").close();
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        const errorMessage = err.message;
+        setErrorMessage("Provide a correct email and password!");
+      });
+  };
+
+  // google signin
+  const handleGoogleLogin = () => {
+    signupWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        alert("signed in successfully");
+        document.getElementById("my_modal_5").close();
+
+        navigate(from, { replace: true });
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <dialog id="my_modal_5" className="modal modal-middle sm:modal-middle">
@@ -53,6 +91,11 @@ function Modal() {
             </div>
 
             {/* Error Text */}
+            {errorMessage ? (
+              <p className="text-red text-xs italic">{errorMessage}</p>
+            ) : (
+              ""
+            )}
 
             {/* Login Button */}
             <div className="form-control mt-6">
@@ -79,7 +122,10 @@ function Modal() {
           </form>
           {/* Social Login */}
           <div className="text-center space-x-5 mb-5">
-            <button className="btn btn-circle hover:bg-green hover:text-white">
+            <button
+              className="btn btn-circle hover:bg-green hover:text-white"
+              onClick={handleGoogleLogin}
+            >
               <FaGoogle />
             </button>
             <button className="btn btn-circle hover:bg-green hover:text-white">
