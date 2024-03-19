@@ -41,7 +41,7 @@ function AuthProvider({ children }) {
 
   // update profile
 
-  const updateUserProfile = ({ name, photoURL }) => {
+  const updateUserProfile = (name, photoURL) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photoURL,
@@ -58,6 +58,8 @@ function AuthProvider({ children }) {
       } else {
         // User is signed out
         // ...
+        setUser(null);
+        setLoading(false);
       }
     });
     return () => {
@@ -72,6 +74,7 @@ function AuthProvider({ children }) {
     login,
     logout,
     updateUserProfile,
+    loading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
