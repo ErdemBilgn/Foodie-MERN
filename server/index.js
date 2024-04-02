@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 3000;
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 app.use(cors());
 app.use(express.json());
@@ -35,6 +35,61 @@ async function run() {
     app.get("/menu", async (req, res) => {
       const result = await menuCollections.find().toArray();
       res.send(result);
+    });
+
+    // all cart item operations
+
+    // posting cart to db
+    app.post("/cart", async (req, res) => {
+      const cartItem = req.body;
+      const result = await cartCollections.insertOne(cartItem);
+      res.send(result);
+    });
+
+    // get carts using email
+    app.get("/cart", async (req, res) => {
+      const email = req.query.email;
+      const filter = {
+        email,
+      };
+      const result = await cartCollections.find(filter).toArray();
+      res.send(result);
+    });
+
+    // get a spesific item
+    app.get("/cart/:id", async (req, res) => {
+      const { id } = req.params;
+      const filter = { _id: new ObjectId(id) };
+      const result = await cartCollections.findOne(filter);
+      res.send(result);
+    });
+
+    // delete items from cart
+    app.delete("/cart/:id", async (req, res) => {
+      const { id } = req.params;
+      const filter = { _id: new ObjectId(id) };
+      const result = await cartCollections.deleteOne(filter);
+      res.send(result);
+    });
+
+    // update carts quantity
+    app.put("/cart/:id", async (req, res) => {
+      const { id } = req.params;
+      const { quantity } = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+
+      const updateDoc = {
+        $set: {
+          quantity: parseInt(quantity, 10),
+        },
+      };
+
+      const result = await cartCollections.updateOne(
+        filter,
+        updateDoc,
+        options
+      );
     });
 
     await client.db("admin").command({ ping: 1 });

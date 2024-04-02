@@ -1,9 +1,64 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
+import { AuthContext } from "../context/AuthProvider";
+import Swal from "sweetalert2";
 
 function Card({ recipe }) {
   const [isHeartFillted, setIsHeartFillted] = useState(false);
+  const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleAddToCart = (item) => {
+    const { name, image, price, category, _id, quantity } = recipe;
+    // console.log("Button is clicked", item);
+    if (user && user?.email) {
+      const cartItem = {
+        menuItemId: _id,
+        name: name,
+        quantity: 1,
+        image: image,
+        price: price,
+        email: user.email,
+      };
+      // console.log(cartItem);
+      fetch("http://localhost:3000/cart", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(cartItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "The Item Has Been Added To The Cart!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Please Login",
+        text: "Without an account you can't be able to add product",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Signup Now!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/signup", { state: { from: location } });
+        }
+      });
+    }
+  };
 
   const handleHeartClick = () => {
     setIsHeartFillted((currIsHeartFilled) => !currIsHeartFilled);
@@ -38,7 +93,12 @@ function Card({ recipe }) {
           <h5 className="font-semibold">
             <span className="text-sm text-red">$</span> {recipe.price}
           </h5>
-          <button className="btn bg-green text-white">Add to Chart</button>
+          <button
+            className="btn bg-green text-white"
+            onClick={() => handleAddToCart(recipe)}
+          >
+            Add to Chart
+          </button>
         </div>
       </div>
     </div>

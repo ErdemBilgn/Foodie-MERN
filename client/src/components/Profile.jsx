@@ -27,10 +27,7 @@ function Profile({ user }) {
             <div className="w-10 rounded-full">
               <div>
                 {user.photoURL ? (
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src={user.photoURL}
-                  />
+                  <img alt="pht" src={user.photoURL} />
                 ) : (
                   <img
                     alt="Tailwind CSS Navbar component"
