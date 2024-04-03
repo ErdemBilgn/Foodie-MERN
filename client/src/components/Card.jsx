@@ -3,17 +3,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { AuthContext } from "../context/AuthProvider";
 import Swal from "sweetalert2";
+import UseCart from "../hooks/UseCart";
 
 function Card({ recipe }) {
   const [isHeartFillted, setIsHeartFillted] = useState(false);
   const { user } = useContext(AuthContext);
 
+  const [cart, refetch] = UseCart();
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleAddToCart = (item) => {
-    const { name, image, price, category, _id, quantity } = recipe;
-    // console.log("Button is clicked", item);
+    const { name, image, price, _id } = item;
     if (user && user?.email) {
       const cartItem = {
         menuItemId: _id,
@@ -33,11 +34,20 @@ function Card({ recipe }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.insertedId) {
+          if (data.menuItemId) {
+            refetch();
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "success",
               title: "The Item Has Been Added To The Cart!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          } else {
+            Swal.fire({
+              position: "center",
+              icon: "warning",
+              title: data.message,
               showConfirmButton: false,
               timer: 1500,
             });

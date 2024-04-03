@@ -90,10 +90,10 @@ function Cart() {
         fetch(`http://localhost:3000/cart/${item._id}`, { method: "DELETE" })
           .then((res) => res.json())
           .then((data) => {
-            if (data.deletedCount > 0) {
+            if (data.message) {
               refetch();
               Swal.fire({
-                title: "Deleted!",
+                title: data.message,
                 text: `${item.name} has been deleted.`,
                 icon: "success",
               });
@@ -118,6 +118,7 @@ function Cart() {
       </div>
 
       {/* Table */}
+
       <div>
         <div className="overflow-x-auto">
           <table className="table">
