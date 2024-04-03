@@ -167,8 +167,8 @@ function Menu() {
 
         {/* Product Cards */}
         <div className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 my-16">
-          {currentItems.map((item) => (
-            <Card key={item._id} recipe={item} />
+          {currentItems.map((item, index) => (
+            <Card key={index} recipe={item} />
           ))}
         </div>
       </div>
