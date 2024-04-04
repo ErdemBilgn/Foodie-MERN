@@ -23,8 +23,10 @@ mongoose
 //import routes
 const menuRoutes = require("./api/routes/MenuRoutes");
 const cartRoutes = require("./api/routes/CartRoutes");
+const userRoutes = require("./api/routes/UserRoutes");
 app.use("/menu", menuRoutes);
 app.use("/cart", cartRoutes);
+app.use("/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello Foodi");
