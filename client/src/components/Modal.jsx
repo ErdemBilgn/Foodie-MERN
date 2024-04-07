@@ -2,8 +2,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthProvider";
+import { useState } from "react";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import UseAuth from "../hooks/useAuth";
 function Modal() {
   const {
     register,
@@ -11,8 +12,9 @@ function Modal() {
     formState: { errors },
   } = useForm();
 
-  const { signupWithGoogle, login } = useContext(AuthContext);
+  const { signupWithGoogle, login } = UseAuth();
   const [errorMessage, setErrorMessage] = useState("");
+  const axiosPublic = useAxiosPublic();
 
   // redirecting to home page or specific page
   const location = useLocation();
@@ -41,10 +43,15 @@ function Modal() {
     signupWithGoogle()
       .then((result) => {
         const user = result.user;
-        alert("signed in successfully");
-        document.getElementById("my_modal_5").close();
-
-        navigate(from, { replace: true });
+        const userInfo = {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+        };
+        axiosPublic.post("/users", userInfo).then((response) => {
+          document.getElementById("my_modal_5").close();
+          alert("Signup successfull");
+          navigate("/");
+        });
       })
       .catch((err) => console.log(err));
   };

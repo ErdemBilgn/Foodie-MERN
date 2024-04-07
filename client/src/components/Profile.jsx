@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
+import { Link } from "react-router-dom";
 
 function Profile({ user }) {
   const { logout } = useContext(AuthContext);
@@ -54,6 +55,9 @@ function Profile({ user }) {
             </li>
             <li>
               <a>Settings</a>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
               <a onClick={handleLogout}>Logout</a>

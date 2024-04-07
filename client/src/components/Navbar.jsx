@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "/logo.png";
 import { FaUser } from "react-icons/fa";
 import Modal from "./Modal";
-import { AuthContext } from "../context/AuthProvider";
 import Profile from "./Profile";
 import { Link } from "react-router-dom";
 import UseCart from "../hooks/UseCart";
+import UseAuth from "../hooks/useAuth";
 
 function Navbar() {
   const [isSticky, setIsSticky] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user } = UseAuth();
   const [cart, refetch] = UseCart();
 
   // handle scroll functions

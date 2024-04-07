@@ -22,7 +22,6 @@ function UpdateProfile() {
     updateUserProfile(name, photoURL)
       .then(() => {
         //Profile updated
-        console.log(user);
         navigate(from, { replace: true });
       })
       .catch((err) => {

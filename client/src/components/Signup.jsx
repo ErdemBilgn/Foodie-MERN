@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
-import { AuthContext } from "../context/AuthProvider";
-import { useContext } from "react";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import UseAuth from "../hooks/useAuth";
 
 function Signup() {
   const {
@@ -12,7 +12,9 @@ function Signup() {
     formState: { errors },
   } = useForm();
 
-  const { createUser, login } = useContext(AuthContext);
+  const { createUser, updateUserProfile, signupWithGoogle } = UseAuth();
+
+  const axiosPublic = useAxiosPublic();
 
   // redirecting to home page or specific page
   const location = useLocation();
@@ -20,19 +22,45 @@ function Signup() {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
+    const name = data.name;
     const email = data.email;
     const password = data.password;
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        alert("Signup successfull");
-        navigate(from, { replace: true });
+        updateUserProfile(data.email, data.photoURL).then(() => {
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          axiosPublic.post("/users", userInfo).then((response) => {
+            alert("Signup successfull");
+            navigate(from, { replace: true });
+          });
+        });
       })
       .catch((err) => {
         const errorCode = err.code;
         const errorMessage = err.message;
         console.log(err);
       });
+  };
+
+  // google signin
+  const handleGoogleLogin = () => {
+    signupWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        const userInfo = {
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+        };
+        axiosPublic.post("/users", userInfo).then((response) => {
+          alert("Signup successfull");
+          navigate("/");
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -45,13 +73,25 @@ function Signup() {
         >
           <h3 className="font-bold text-lg">Create An Account!</h3>
           <div className="form-control">
+            {/* Name */}
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Name"
+              className="input input-bordered"
+              {...register("name")}
+            />
+          </div>
+          <div className="form-control">
             {/* Email */}
             <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
               type="email"
-              placeholder="email"
+              placeholder="Email"
               className="input input-bordered"
               {...register("email")}
             />
@@ -64,7 +104,7 @@ function Signup() {
             </label>
             <input
               type="password"
-              placeholder="password"
+              placeholder="Password"
               className="input input-bordered"
               {...register("password")}
             />
@@ -89,7 +129,10 @@ function Signup() {
           <p className="text-center my-2">
             Already have an account?{" "}
             <button
-              onClick={() => document.getElementById("my_modal_5").showModal()}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("my_modal_5").showModal();
+              }}
               className="underline text-red ml-1"
             >
               Login Now!
@@ -104,7 +147,10 @@ function Signup() {
         </form>
         {/* Social Login */}
         <div className="text-center space-x-5 mb-5">
-          <button className="btn btn-circle hover:bg-green hover:text-white">
+          <button
+            onClick={handleGoogleLogin}
+            className="btn btn-circle hover:bg-green hover:text-white"
+          >
             <FaGoogle />
           </button>
           <button className="btn btn-circle hover:bg-green hover:text-white">

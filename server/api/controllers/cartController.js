@@ -18,7 +18,7 @@ const addToCart = async (req, res) => {
   const { menuItemId, name, recipe, image, price, quantity, email } = req.body;
   try {
     // check existing item
-    const existingItem = await Cart.findOne({ menuItemId });
+    const existingItem = await Cart.findOne({ menuItemId, email });
     if (existingItem) {
       return res
         .status(400)
@@ -52,6 +52,11 @@ const deleteCartItem = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+};
+
+const deleteUsersCart = async (user) => {
+  const query = { email: user.email };
+  await Cart.deleteMany(query);
 };
 
 // Update a cart item
@@ -104,4 +109,5 @@ module.exports = {
   deleteCartItem,
   updateCartItem,
   getSingleCartItem,
+  deleteUsersCart,
 };

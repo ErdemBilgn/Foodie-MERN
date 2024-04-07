@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const port = process.env.PORT || 3000;
-// const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const jwt = require("jsonwebtoken");
 
 app.use(cors());
 app.use(express.json());
@@ -19,6 +19,17 @@ mongoose
   .connect(uri)
   .then(() => console.log("Connected To DB!!!"))
   .catch((err) => console.log(err));
+
+// jwt authentication
+app.post("/jwt", async (req, res) => {
+  const user = req.body;
+  const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1hr",
+  });
+  res.send({ token });
+});
+
+// verify jwt token
 
 //import routes
 const menuRoutes = require("./api/routes/MenuRoutes");
