@@ -14,6 +14,10 @@ const menuSchema = new Schema({
   image: String,
   category: String,
   price: Number,
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const Menu = mongoose.model("Menu", menuSchema);

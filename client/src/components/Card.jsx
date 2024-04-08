@@ -90,7 +90,7 @@ function Card({ recipe }) {
         <figure>
           <img
             src={recipe.image}
-            className="hover:scale-105 trainsition-all duration-200 md:h-72"
+            className="hover:scale-105 trainsition-all duration-200 md:h-72 w-80%"
           />
         </figure>
       </Link>
