@@ -98,7 +98,7 @@ function Card({ recipe }) {
         <Link to={`/menu/${recipe._id}`}>
           <h2 className="card-title">{recipe.name}</h2>
         </Link>
-        <p>Description of the item</p>
+        <p>{recipe.recipe}</p>
         <div className="card-actions justify-between items-center mt-2">
           <h5 className="font-semibold">
             <span className="text-sm text-red">$</span> {recipe.price}
