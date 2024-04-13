@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 function Users() {
   const axiosSecure = useAxiosSecure();
@@ -14,15 +15,38 @@ function Users() {
 
   const handleMakeAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-      alert(`${user.name} is now admin!`);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `${user.name} is now admin!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
       refetch();
     });
   };
 
   const handleDelete = (user) => {
-    axiosSecure.delete(`/users/${user._id}`).then((res) => {
-      alert(`${user.name} is deleted!`);
-      refetch();
+    Swal.fire({
+      title: "Are you sure?",
+      text: `${user.name} is going to be deleted!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${user._id}`).then((res) => {
+          Swal.fire({
+            title: "Deleted!",
+            text: `${user.name} has been deleted.`,
+            icon: "success",
+          });
+          refetch();
+        });
+      }
     });
   };
 
