@@ -8,6 +8,14 @@ A Food Delivery app created with the MERN stack
 
 ### Project Overview Video - https://youtu.be/tkVPpXab15U
 
+## Important !
+
+If you want to access the dashboard sections, your account must be an admin. <br />
+Use this cretentials for an admin account! <br />
+
+email: erdem@erdem.com <br />
+password: 123456
+
 ## Frontend
 
 The frontend of this project is created with ReactJS.<br />
