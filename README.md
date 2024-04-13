@@ -4,13 +4,13 @@ A Food Delivery app created with the MERN stack
 
 ## Links
 
-#### Project Demo - https://foodi-client-seven.vercel.app/
+### Project Demo - https://foodi-client-seven.vercel.app/
 
-#### Project Overview Video - https://youtu.be/tkVPpXab15U
+### Project Overview Video - https://youtu.be/tkVPpXab15U
 
 ## Frontend
 
-The frontend to this project is created with ReactJS.<br />
+The frontend of this project is created with ReactJS.<br />
 
 To start the frontend : <br />
 
@@ -88,3 +88,26 @@ VITE_IMGBB_KEY= from the imgbb
 ![Success](OverviewImages/Success.PNG)
 
 ![AreYouSure](OverviewImages/AreYouSure.PNG)
+
+## Backend
+
+The backend of this project is created with ExpressJS. MongoDB is used for the database. <br />
+To start the backend: <br />
+
+`cd server`<br />
+
+`npm install`<br />
+
+`npm run dev`<br />
+
+Also .env file has to be created. <br />
+
+.env content :
+
+```
+PORT= your port
+MONGO_USERNAME= from MongoDB
+MONGO_PASSWORD= from MongoDB
+
+ACCESS_TOKEN_SECRET= The Secret Key For Your Access Token
+```
