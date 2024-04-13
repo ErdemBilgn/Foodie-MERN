@@ -10,13 +10,18 @@ A Food Delivery app created with the MERN stack
 
 ## Frontend
 
-The frontend to this project is created with ReactJS
-To start the frontend :
-`cd client`
-`npm install`
-`npm run dev`
+The frontend to this project is created with ReactJS.<br />
 
-Also .env file has to be created.
+To start the frontend : <br />
+
+`cd client`<br />
+
+`npm install`<br />
+
+`npm run dev`<br />
+
+Also .env file has to be created. <br />
+
 .env content :
 
 ```
