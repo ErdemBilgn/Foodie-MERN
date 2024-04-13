@@ -37,6 +37,18 @@ VITE_IMGBB_KEY= from the imgbb
 
 ### Screenshots
 
-#### Home page :
+#### Home Page :
 
-![HomeScreen](OverviewImages/Homepage1.PNG)
+![HomeScreen1](OverviewImages/Homepage1.PNG)
+![HomeScreen2](OverviewImages/Homepage2.PNG)
+![HomeScreen3](OverviewImages/Homepage3.PNG)
+![HomeScreen4](OverviewImages/Homepage4.PNG)
+![HomeScreen5](OverviewImages/Homepage5.PNG)
+
+#### Signup Page:
+
+![Signup](OverviewImages/Signup.PNG)
+
+#### Login Page:
+
+![Login](OverviewImages/Login.PNG)
