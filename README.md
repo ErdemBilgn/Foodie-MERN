@@ -34,4 +34,4 @@ VITE_IMGBB_KEY= from the imgbb
 
 #### Home page :
 
-![HomeScreen](client/public/images/Overview Images/Homepage1.PNG)
+![HomeScreen](OverviewImages/Homepage1.PNG)
