@@ -90,4 +90,10 @@ const makeAdmin = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, createUser, deleteUser, getAdmin, makeAdmin };
+module.exports = {
+  getAllUsers,
+  createUser,
+  deleteUser,
+  getAdmin,
+  makeAdmin,
+};

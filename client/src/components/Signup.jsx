@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Modal from "./Modal";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import UseAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 
 function Signup() {
   const {
@@ -34,7 +35,13 @@ function Signup() {
             email: data.email,
           };
           axiosPublic.post("/users", userInfo).then((response) => {
-            alert("Signup successfull");
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: `Welcome ${response.data.name}`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
             navigate(from, { replace: true });
           });
         });
@@ -56,7 +63,13 @@ function Signup() {
           email: result?.user?.email,
         };
         axiosPublic.post("/users", userInfo).then((response) => {
-          alert("Signup successfull");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `Welcome`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
           navigate("/");
         });
       })
@@ -108,11 +121,6 @@ function Signup() {
               className="input input-bordered"
               {...register("password")}
             />
-            <label className="label mt-1">
-              <a href="#" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
-            </label>
           </div>
 
           {/* Error Text */}

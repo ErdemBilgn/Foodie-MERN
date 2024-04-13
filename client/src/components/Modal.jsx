@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import UseAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
+
 function Modal() {
   const {
     register,
@@ -28,7 +30,13 @@ function Modal() {
     login(email, password)
       .then((result) => {
         const user = result.user;
-        alert("login successfull!");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Welcome Back!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
         document.getElementById("my_modal_5").close();
         navigate(from, { replace: true });
       })
@@ -49,7 +57,13 @@ function Modal() {
         };
         axiosPublic.post("/users", userInfo).then((response) => {
           document.getElementById("my_modal_5").close();
-          alert("Signup successfull");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `Welcome!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
           navigate("/");
         });
       })

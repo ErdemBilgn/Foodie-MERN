@@ -2,8 +2,13 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 function UpdateProfile() {
+  const axiosPublic = useAxiosPublic();
+  const imgbbKey = import.meta.env.VITE_IMGBB_KEY;
+  const imgbbApi = `https://api.imgbb.com/1/upload?key=${imgbbKey}`;
   const { updateUserProfile, user } = useContext(AuthContext);
   const {
     register,
@@ -16,18 +21,31 @@ function UpdateProfile() {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const name = data.name;
-    const photoURL = data.photoURL;
-    updateUserProfile(name, photoURL)
-      .then(() => {
-        //Profile updated
-        navigate(from, { replace: true });
-      })
-      .catch((err) => {
-        console.log(err);
-        //An error occured
-      });
+    const imageFile = { image: data.image[0] };
+    const hostingImg = await axiosPublic.post(imgbbApi, imageFile, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    if (hostingImg) {
+      updateUserProfile(name, hostingImg.data.data.display_url)
+        .then(async () => {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `Profile Updated!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(from, { replace: true });
+        })
+        .catch((err) => {
+          console.log(err);
+          //An error occured
+        });
+    }
   };
 
   return (
@@ -51,16 +69,20 @@ function UpdateProfile() {
             <label className="label">
               <span className="label-text">Upload Photo</span>
             </label>
-            <input
-              {...register("photoURL")}
+            {/* <input
+              {...register("image")}
               type="text"
               placeholder="photoURL"
               className="input input-bordered"
               required
-            />
+            /> */}
 
             {/* TODO: IMAGE UPLOAD */}
-            {/* <input type="file" className="file-input w-full max-w-xs" /> */}
+            <input
+              {...register("image")}
+              type="file"
+              className="file-input w-full max-w-xs"
+            />
           </div>
           <div className="form-control mt-6">
             <button className="btn bg-green text-white">Update</button>
