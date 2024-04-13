@@ -4,9 +4,9 @@ A Food Delivery app created with the MERN stack
 
 ## Links
 
-##### Project Demo - https://foodi-client-seven.vercel.app/
+#### Project Demo - https://foodi-client-seven.vercel.app/
 
-##### Project Overview Video - https://youtu.be/tkVPpXab15U
+#### Project Overview Video - https://youtu.be/tkVPpXab15U
 
 ## Frontend
 
@@ -52,3 +52,39 @@ VITE_IMGBB_KEY= from the imgbb
 #### Login Page:
 
 ![Login](OverviewImages/Login.PNG)
+
+#### Menu Page:
+
+![Menu1](OverviewImages/Menu1.PNG)
+![Menu2](OverviewImages/Menu2.PNG)
+![Menu3](OverviewImages/Menu3.PNG)
+
+#### Cart Page:
+
+![Cart](OverviewImages/Cart.PNG)
+
+#### Dashboard Page:
+
+![Dashboard](OverviewImages/Dashboard.PNG)
+
+#### Users Page:
+
+![Users](OverviewImages/Users.PNG)
+
+#### Manage Items Page:
+
+![ManageItems](OverviewImages/ManageItems.PNG)
+
+#### Add To Menu Page:
+
+![AddMenu](OverviewImages/AddMenu.PNG)
+
+#### Update Profile Page:
+
+![UpdateProfile](OverviewImages/UpdateProfile.PNG)
+
+#### Popups
+
+![Success](OverviewImages/Success.PNG)
+
+![AreYouSure](OverviewImages/AreYouSure.PNG)
