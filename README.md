@@ -6,7 +6,11 @@ A Food Delivery app created with the MERN stack
 
 ### Project Demo - https://foodi-client-seven.vercel.app/
 
-### Project Overview Video - https://youtu.be/tkVPpXab15U
+### Project Overview Video:
+
+Click on the image to watch the preview video!
+
+[![project-overview](https://img.youtube.com/vi/tkVPpXab15U/0.jpg)](https://www.youtube.com/watch?v=tkVPpXab15U)
 
 ## Important !
 
